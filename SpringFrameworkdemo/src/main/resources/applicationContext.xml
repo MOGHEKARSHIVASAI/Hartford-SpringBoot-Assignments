@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="message" class="java.lang.String">
+        <constructor-arg value="Hello from xml configuration!"/>
+    </bean>
+    <bean id="helloBean" class="org.example.HelloService">
+        <property name="message" ref="message"/>
+    </bean>
+
+    <!-- Payment Services -->
+    <bean id="upi" class="org.example.UpiPayementService"/>
+    <bean id="creditCard" class="org.example.CreditCardPaymentService"/>
+    <bean id="debitCard" class="org.example.DebitCardPaymentService"/>
+
+    <!-- Notification Services -->
+    <bean id="email" class="org.example.EmailNotificationService"/>
+    <bean id="whatsapp" class="org.example.WhatsappNotificationService"/>
+    <bean id="sms" class="org.example.SmsNotificationService"/>
+
+    <!-- 9 Combinations: 3 Payment Services x 3 Notification Services -->
+
+    <!-- Option 1: UPI + Email -->
+    <bean id="expenseTracker1" class="org.example.ExpenseTracker">
+        <property name="ps" ref="upi"/>
+    </bean>
+    <bean id="messageTracker1" class="org.example.MessageTracker">
+        <property name="notificationService" ref="email"/>
+    </bean>
+
+    <!-- Option 2: UPI + WhatsApp -->
+    <bean id="expenseTracker2" class="org.example.ExpenseTracker">
+        <property name="ps" ref="upi"/>
+    </bean>
+    <bean id="messageTracker2" class="org.example.MessageTracker">
+        <property name="notificationService" ref="whatsapp"/>
+    </bean>
+
+    <!-- Option 3: UPI + SMS -->
+    <bean id="expenseTracker3" class="org.example.ExpenseTracker">
+        <property name="ps" ref="upi"/>
+    </bean>
+    <bean id="messageTracker3" class="org.example.MessageTracker">
+        <property name="notificationService" ref="sms"/>
+    </bean>
+
+    <!-- Option 4: Credit Card + Email -->
+    <bean id="expenseTracker4" class="org.example.ExpenseTracker">
+        <property name="ps" ref="creditCard"/>
+    </bean>
+    <bean id="messageTracker4" class="org.example.MessageTracker">
+        <property name="notificationService" ref="email"/>
+    </bean>
+
+    <!-- Option 5: Credit Card + WhatsApp -->
+    <bean id="expenseTracker5" class="org.example.ExpenseTracker">
+        <property name="ps" ref="creditCard"/>
+    </bean>
+    <bean id="messageTracker5" class="org.example.MessageTracker">
+        <property name="notificationService" ref="whatsapp"/>
+    </bean>
+
+    <!-- Option 6: Credit Card + SMS -->
+    <bean id="expenseTracker6" class="org.example.ExpenseTracker">
+        <property name="ps" ref="creditCard"/>
+    </bean>
+    <bean id="messageTracker6" class="org.example.MessageTracker">
+        <property name="notificationService" ref="sms"/>
+    </bean>
+
+    <!-- Option 7: Debit Card + Email -->
+    <bean id="expenseTracker7" class="org.example.ExpenseTracker">
+        <property name="ps" ref="debitCard"/>
+    </bean>
+    <bean id="messageTracker7" class="org.example.MessageTracker">
+        <property name="notificationService" ref="email"/>
+    </bean>
+
+    <!-- Option 8: Debit Card + WhatsApp -->
+    <bean id="expenseTracker8" class="org.example.ExpenseTracker">
+        <property name="ps" ref="debitCard"/>
+    </bean>
+    <bean id="messageTracker8" class="org.example.MessageTracker">
+        <property name="notificationService" ref="whatsapp"/>
+    </bean>
+
+    <!-- Option 9: Debit Card + SMS -->
+    <bean id="expenseTracker9" class="org.example.ExpenseTracker">
+        <property name="ps" ref="debitCard"/>
+    </bean>
+    <bean id="messageTracker9" class="org.example.MessageTracker">
+        <property name="notificationService" ref="sms"/>
+    </bean>
+</beans>
